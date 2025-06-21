@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subscribe | Brand</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- 🔹 Glass NavBar with Logo -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/HD_transparent_picture.png/1200px-HD_transparent_picture.png" alt="Brand Logo" />
+      <span>MailNova</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Features</a>
+      <a href="#">Pricing</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <!-- 🔹 Newsletter Box -->
+  <div class="newsletter-box">
+    <div class="top-image">
+      <img src="https://images.pexels.com/photos/1601773/pexels-photo-1601773.jpeg" alt="Offer Image" />
+    </div>
+
+    <div class="content">
+      <h2>Leaving already?</h2>
+      <p>Get 20% off before you miss out on a great deal. Sign up now!</p>
+
+      <form id="subscribeForm" novalidate>
+        <label for="name" class="visually-hidden">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name" required />
+
+        <label for="email" class="visually-hidden">Email</label>
+        <input type="email" id="email" name="email" placeholder="Your email" required />
+
+        <label class="checkbox">
+          <input type="checkbox" id="consent" name="consent" required />
+          <span>I’d like to get special offers in my inbox</span>
+        </label>
+
+        <button type="submit">Claim Discount</button>
+        <p id="success" hidden>🎉 You're in! Check your inbox for the discount.</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ✅ JavaScript for Validation -->
+  <script>
+    const form = document.getElementById('subscribeForm');
+    const successMsg = document.getElementById('success');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name');
+      const email = document.getElementById('email');
+      const consent = document.getElementById('consent');
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+      successMsg.hidden = true;
+
+      if (name.value.trim() === '') {
+        alert("Please enter your name.");
+        name.focus();
+        return;
+      }
+
+      if (!emailPattern.test(email.value.trim())) {
+        alert("Please enter a valid email address.");
+        email.focus();
+        return;
+      }
+
+      if (!consent.checked) {
+        alert("Please agree to receive special offers.");
+        return;
+      }
+
+      successMsg.hidden = false;
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
